@@ -20,7 +20,9 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "update user" do
-    put api_v1_user_url(@user), params: { user: { email: 'bob2@test.com' } }, as: :json
+    put api_v1_user_url(@user),
+      params: { user: { email: 'bob2@test.com' } },
+      headers: { Authorization: JsonWebToken.encode(user_id: @user.id) }, as: :json
     assert_response :ok
 
     @user.reload
