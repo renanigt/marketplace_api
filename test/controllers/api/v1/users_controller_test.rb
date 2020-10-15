@@ -30,4 +30,15 @@ class Api::V1::UsersControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal 'bob2@test.com', @user.email
   end
+
+  test "destroy user" do
+    assert_difference "User.count", -1 do
+      assert_difference "Product.count", -1 do
+        delete api_v1_user_url(@user),
+          headers: { Authorization: JsonWebToken.encode(user_id: @user.id) },
+          as: :json
+      end
+    end
+    assert_response :no_content
+  end
 end

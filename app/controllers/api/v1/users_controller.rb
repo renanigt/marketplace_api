@@ -1,8 +1,8 @@
 module Api
   module V1
     class UsersController < ApplicationController
-      before_action :set_user, only: [:update]
-      before_action :check_user, only: [:update]
+      before_action :set_user, except: :create
+      before_action :check_user, except: :create
 
       def create
         @user = User.new(user_params)
@@ -20,6 +20,11 @@ module Api
         else
           render json: @user.errors, status: :unprocessable_entity
         end
+      end
+
+      def destroy
+        @user.destroy!
+        head :no_content
       end
 
       private
