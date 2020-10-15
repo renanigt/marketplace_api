@@ -1,0 +1,5 @@
+one:
+  name: Product One
+  description: Product one description
+  price: 10.23
+  user: bob
