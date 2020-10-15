@@ -1,5 +1,7 @@
 class User < ApplicationRecord
-  validates :email, uniqueness: true, presence: true, format: { with: /@/ }
+  has_many :products
 
   has_secure_password
+
+  validates :email, uniqueness: true, presence: true, format: { with: /@/ }
 end
