@@ -3,3 +3,9 @@ one:
   description: Product one description
   price: 10.23
   user: one
+
+two:
+  name: Product Two
+  description: Product two description
+  price: 13.41
+  user: two

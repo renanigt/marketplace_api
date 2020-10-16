@@ -1,8 +1,16 @@
 module Api
   module V1
     class ProductsController < ApplicationController
-      before_action :check_authorization, except: :show
-      before_action :set_product, except: :create
+      before_action :check_authorization, only: [:create, :update, :destroy]
+      before_action :set_product, only: [:show, :update, :destroy]
+
+      def index
+        render json: Product.all.order(:name), status: :ok
+      end
+
+      def list
+        render json: Product.where(user_id: params[:user_id]), status: :ok
+      end
 
       def create
         @product = current_user.products.new(product_params)
