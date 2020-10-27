@@ -5,6 +5,7 @@ Rails.application.routes.draw do
         get '/products', to: 'products#list'
       end
       resources :products, only: [:index, :create, :show, :update, :destroy]
+      resources :orders, only: [:index, :show, :create]
 
       post :auth, to: 'authentication#authenticate'
     end
